@@ -3,7 +3,9 @@ import './App.css';
 function Testimonial(props){
     return(
         <div className="testimonial">
-            <p className="rating testimonialHeaderText">{props.rating}</p>
+            <div className="testimonialHeader">
+                <p className="rating testimonialHeaderText">{props.rating}</p>
+            </div>
             <div className="testimonialMain">
                 <img src={props.path} alt="Testimonial Image" />
                 <p className="testimonialName testimonialText">{props.name}</p>

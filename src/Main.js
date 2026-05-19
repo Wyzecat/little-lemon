@@ -18,7 +18,7 @@ function Main() {
                         <h2 className="subTitle">Chicago</h2>
                         <p id="heroP">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
-                    <div>
+                    <div className="heroBtnContainer">
                         <a href="./reserve" id="heroReserveButton" className="button">Reserve a Table</a>
                     </div>
                 </div>
@@ -40,7 +40,9 @@ function Main() {
                 </div>
             </section>
             <section className="testimonials">
-                <h2 className="subTitle">Testimonials</h2>
+                <div className="testimonialsHeader">
+                    <h2 className="subTitle">Testimonials</h2>
+                </div>
                 <div className="testimonialCards">
                     <Testimonial path={"./reviewimg.png"} name={"Name"} text={"Review text"} rating={"Rating"} />
                     <Testimonial path={"./reviewimg.png"} name={"Name"} text={"Review text"} rating={"Rating"} />
@@ -50,10 +52,14 @@ function Main() {
             </section>
             <section className="about">
                 <div className="aboutLeft">
-                    <h1 className="displayTitle">Little Lemon</h1>
-                    <h2 className="subTitle">Chicago</h2>
-                    <p className="aboutText" cols="65">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
-                    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+                    <div className="=aboutLeftTop">
+                        <h1 className="displayTitle">Little Lemon</h1>
+                        <h2 className="subTitle">Chicago</h2>
+                    </div>
+                    <div className="=aboutLeftBottom">
+                        <p className="aboutText" cols="65">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+                    </div>
                 </div>
                 <div className="aboutRight">
                     <img src={aboutImgF} alt="About Image Back" className="aboutBack" />
