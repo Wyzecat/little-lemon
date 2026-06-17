@@ -1,9 +1,11 @@
 import './App.css';
+import './Booking.css'
+import BookingForm from './BookingForm';
 
-function BookingPage() {
+function BookingPage(props) {
     return (
-        <div className='main'>
-            <h1>Welcome to the booking page</h1>
+        <div className='bookingMain'>
+            <BookingForm availableTimes={props.availableTimes} />
         </div>
     )
 }
