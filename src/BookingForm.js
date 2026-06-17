@@ -13,10 +13,6 @@ import { useForm } from './contexts/FormContext';
 
     const [formData, setFormData] = useState();
     const [submitted,setSubmitted] = useState(false);
-    const [date,setDate] = useState(currentDate);
-    const [time,setTime] = useState('17:00');
-    const [guests,setGuests] = useState(1);
-    const [occasion,setOccasion] = useState("Birthday");
 
     const bookingSchema = Yup.object({
         date: Yup.date()
@@ -60,15 +56,15 @@ import { useForm } from './contexts/FormContext';
                 {({ errors, touched }) => (
                     <Form className="bookingForm">
                         <h2 className='subTitle'>Choose date</h2>
-                        <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={()=>{setDate(document.getElementById("dateField").value); console.log("new date: "+date);}}/>
+                        <Field id="date" name="date" type="date" id="dateField" min={currentDate}/>
                         <h2 className='subTitle'>Choose time</h2>
-                        <Field id="time" name="time" as="select" id="timeField" onChange={()=>{setTime(document.getElementById("dateField").value); console.log("new date: "+time);}}>
+                        <Field id="time" name="time" as="select" id="timeField">
                             <AvailableTimes times={props.availableTimes} />
                         </Field>
                         <h2 className='subTitle'>Number of guests</h2>
-                        <Field id="guests" name="guests" type="number" min="1" max="10" id="guestsField" onChange={()=>{setGuests(document.getElementById("guestsField").value); console.log("new date: "+guests);}} />
+                        <Field id="guests" name="guests" type="number" min="1" max="10" id="guestsField"/>
                         <h2 className='subTitle'>Occasion</h2>
-                        <Field id="occasion" name="occasion" as="select" id="occasionField" onChange={()=>{setOccasion(document.getElementById("occasionField").value); console.log("new date: "+occasion);}} >
+                        <Field id="occasion" name="occasion" as="select" id="occasionField" >
                             <option value="Birthday">Birthday</option>
                             <option value="Anniversary">Anniversary</option>
                         </Field>
