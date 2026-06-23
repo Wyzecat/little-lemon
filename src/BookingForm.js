@@ -53,10 +53,13 @@ import { useForm } from './contexts/FormContext';
                     setSubmitted(true);
                 }}
                 >
-                {({ errors, touched }) => (
-                    <Form className="bookingForm">
+                {({ errors, touched, handleChange }) => (
+                    <Form className="bookingForm" >
                         <h2 className='subTitle'>Choose date</h2>
-                        <Field id="date" name="date" type="date" id="dateField" min={currentDate}/>
+                        <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
+                            handleChange(e);
+                            console.log("date changed");
+                        }}/>
                         <h2 className='subTitle'>Choose time</h2>
                         <Field id="time" name="time" as="select" id="timeField">
                             <AvailableTimes times={props.availableTimes} />

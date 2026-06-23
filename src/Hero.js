@@ -5,7 +5,7 @@ import heroImg from './images/restaurant.jpg'
 function Hero() {
     return(
         <section className="hero">
-            <div class="heroText">
+            <div className="heroText">
                 <div id="heroTxtContainer">
                     <h1 className="displayTitle">Little Lemon</h1>
                     <h2 className="subTitle">Chicago</h2>
