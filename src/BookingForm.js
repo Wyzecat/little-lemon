@@ -8,7 +8,7 @@ import AvailableTimes from './AvailableTimes';
 import { useConst } from '@chakra-ui/react';
 import { useForm } from './contexts/FormContext';
 
- function BookingForm (props) {
+ function BookingForm ({availableTimes, dispatch}) {
     const currentDate = new Date(new Date()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0,-1).split("T")[0];
 
     const [formData, setFormData] = useState();
@@ -18,7 +18,7 @@ import { useForm } from './contexts/FormContext';
         date: Yup.date()
             .min(currentDate,"Please choose a date of today or later.")
             .required("A valid date is required."),
-        time: Yup.string().oneOf(props.availableTimes, "Please choose a time from the list.")
+        time: Yup.string().oneOf(availableTimes, "Please choose a time from the list.")
             .required("A time is required."),
         guests: Yup.number()
             .min(1,"You must have at least one person in your party.")
@@ -41,11 +41,10 @@ import { useForm } from './contexts/FormContext';
                 <Formik
                 initialValues={{
                     date: currentDate,
-                    time: props.availableTimes[0],
+                    time: availableTimes[0],
                     guests: 1,
                     occasion: 'Birthday'
                 }}
-                validationSchema={bookingSchema}
                 onSubmit={values => {
                     // same shape as initial values
                     console.log("Submitting reservation");
@@ -58,11 +57,11 @@ import { useForm } from './contexts/FormContext';
                         <h2 className='subTitle'>Choose date</h2>
                         <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
                             handleChange(e);
-                            console.log("date changed");
+                            dispatch({type:"date_changed"});
                         }}/>
                         <h2 className='subTitle'>Choose time</h2>
                         <Field id="time" name="time" as="select" id="timeField">
-                            <AvailableTimes times={props.availableTimes} />
+                            <AvailableTimes times={availableTimes} />
                         </Field>
                         <h2 className='subTitle'>Number of guests</h2>
                         <Field id="guests" name="guests" type="number" min="1" max="10" id="guestsField"/>

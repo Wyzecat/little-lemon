@@ -2,10 +2,10 @@ import './App.css';
 import './Booking.css'
 import BookingForm from './BookingForm';
 
-function BookingPage(props) {
+function BookingPage({availableTimes, dispatch}) {
     return (
         <div className='bookingMain'>
-            <BookingForm availableTimes={props.availableTimes} />
+            <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
         </div>
     )
 }
