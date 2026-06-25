@@ -52,25 +52,30 @@ function BookingForm ({availableTimes, dispatch}) {
                     setFormData(values);
                     setSubmitted(true);
                 }}
+                validationSchema={bookingSchema}
                 >
-                {({ values, errors, touched, handleChange }) => (
+                {({ values, errors, handleChange }) => (
                     <Form className="bookingForm" >
                         <h2 className='subTitle'>Choose date</h2>
                         <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
                             handleChange(e);
                             dispatch({type:"date_changed"});
                         }}/>
+                        <ErrorMessage name="date" component="div" style={{ color: 'red' }} />
                         <h2 className='subTitle'>Choose time</h2>
                         <div role="group" aria-labelledby="time-radio-group" className="timeSelect">
                             <AvailableTimes times={availableTimes} status={values.time}/>
                         </div>
+                        <ErrorMessage name="time" component="div" style={{ color: 'red' }} />
                         <h2 className='subTitle'>Number of guests</h2>
-                        <Field id="guests" name="guests" type="number" min="1" max="10" id="guestsField"/>
+                        <Field id="guests" name="guests" type="number" id="guestsField"/>
+                        <ErrorMessage name="guests" component="div" style={{ color: 'red' }} />
                         <h2 className='subTitle'>Occasion</h2>
                         <Field id="occasion" name="occasion" as="select" id="occasionField" >
                             <option value="Birthday">Birthday</option>
                             <option value="Anniversary">Anniversary</option>
                         </Field>
+                        <ErrorMessage name="occasion" component="div" style={{ color: 'red' }} />
                         <button className="button" type="submit" disabled={submitted}>
                             Submit
                         </button>
