@@ -8,7 +8,9 @@ import AvailableTimes from './AvailableTimes';
 import { useConst } from '@chakra-ui/react';
 import { useForm } from './contexts/FormContext';
 
- function BookingForm ({availableTimes, dispatch}) {
+
+
+function BookingForm ({availableTimes, dispatch}) {
     const currentDate = new Date(new Date()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0,-1).split("T")[0];
 
     const [formData, setFormData] = useState();
@@ -41,7 +43,6 @@ import { useForm } from './contexts/FormContext';
                 <Formik
                 initialValues={{
                     date: currentDate,
-                    time: availableTimes[0],
                     guests: 1,
                     occasion: 'Birthday'
                 }}
@@ -52,7 +53,7 @@ import { useForm } from './contexts/FormContext';
                     setSubmitted(true);
                 }}
                 >
-                {({ errors, touched, handleChange }) => (
+                {({ values, errors, touched, handleChange }) => (
                     <Form className="bookingForm" >
                         <h2 className='subTitle'>Choose date</h2>
                         <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
@@ -60,9 +61,9 @@ import { useForm } from './contexts/FormContext';
                             dispatch({type:"date_changed"});
                         }}/>
                         <h2 className='subTitle'>Choose time</h2>
-                        <Field id="time" name="time" as="select" id="timeField">
-                            <AvailableTimes times={availableTimes} />
-                        </Field>
+                        <div role="group" aria-labelledby="time-radio-group" className="timeSelect">
+                            <AvailableTimes times={availableTimes} status={values.time}/>
+                        </div>
                         <h2 className='subTitle'>Number of guests</h2>
                         <Field id="guests" name="guests" type="number" min="1" max="10" id="guestsField"/>
                         <h2 className='subTitle'>Occasion</h2>

@@ -15,8 +15,44 @@
     grid-row: 2;
 }
 
-/* Submitted View */
+.timeOption{
+    appearance: none;
+    outline: none;
+    width: 0px;
+    margin: 0px;
+}
 
+.timeOptionSelected{
+    appearance: none;
+    outline: none;
+    width: 0px;
+    margin: 0px;
+}
+
+.time{
+    color:#EDEFEE;
+    background-color: #495E57;
+    padding: 0.5em;
+    margin: 0.3em;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.time:hover{
+    background-color: #F4CE14;
+    color:black;
+}
+
+.timeSelected{
+    background-color: #F4CE14;
+    color:black;
+    padding: 0.5em;
+    margin: 0.3em;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+/* Submitted View */
 
 .bookingFormSubmitted {
     display: grid;
