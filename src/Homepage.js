@@ -1,7 +1,7 @@
 import Cards from "./Cards.js"
 import Testimonials from "./Testimonials.js"
 import Button from "./Button.js"
-import './App.css';
+import './style/App.css';
 import Hero from "./Hero.js";
 
 //images

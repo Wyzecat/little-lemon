@@ -1,5 +1,5 @@
-import './App.css';
-import './Booking.css'
+import './style/App.css';
+import './style/Booking.css'
 import BookingForm from './BookingForm';
 
 function BookingPage({availableTimes, dispatch}) {

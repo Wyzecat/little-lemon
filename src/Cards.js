@@ -1,5 +1,5 @@
 import Card from "./Card";
-import './App.css';
+import './style/App.css';
 import salad from './images/greek salad.jpg';
 import bruschetta from './images/bruchetta.svg';
 import dessert from './images/lemon dessert.jpg'

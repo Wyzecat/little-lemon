@@ -1,4 +1,4 @@
-import './Booking.css';
+import './style/Booking.css';
 import { useEffect, useState } from 'react';
 
 function SubmitButton() {

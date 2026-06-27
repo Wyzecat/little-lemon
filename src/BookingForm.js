@@ -1,14 +1,10 @@
-import './App.css';
-import './Booking.css';
+import './style/App.css';
+import './style/Booking.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import AvailableTimes from './AvailableTimes';
-import { useConst } from '@chakra-ui/react';
-import { useForm } from './contexts/FormContext';
-
-
 
 function BookingForm ({availableTimes, dispatch}) {
     const currentDate = new Date(new Date()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0,-1).split("T")[0];
@@ -76,8 +72,8 @@ function BookingForm ({availableTimes, dispatch}) {
                             <option value="Anniversary">Anniversary</option>
                         </Field>
                         <ErrorMessage name="occasion" component="div" style={{ color: 'red' }} />
-                        <button className="button" type="submit" disabled={submitted}>
-                            Submit
+                        <button className="button" id="submitButton" type="submit" disabled={submitted}>
+                            Book Now
                         </button>
                     </Form>
                 )}

@@ -1,9 +1,8 @@
 import logo from './logo.svg';
-import './App.css';
+import './style/App.css';
 import Header from "./Header";
 import Main from './Main';
 import Footer from "./Footer";
-import { FormProvider } from './contexts/FormContext';
 
 function App() {
   return (

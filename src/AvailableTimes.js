@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Field } from "formik";
-import './Booking.css';
+import './style/Booking.css';
 
 function AvailableTimes(props){
     const options = [];

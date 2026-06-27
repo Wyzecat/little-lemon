@@ -1,4 +1,4 @@
-import './App.css';
+import './style/App.css';
 import Button from './Button';
 import heroImg from './images/restaurant.jpg'
 
