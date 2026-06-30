@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import { useState, useEffect, useContext } from 'react';
 import { Link } from "react-router-dom";
 import AvailableTimes from './AvailableTimes';
+import { submitAPI } from './APIfuncs';
 
 function BookingForm ({availableTimes, dispatch}) {
     const currentDate = new Date(new Date()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0,-1).split("T")[0];
+    const currentDateUnformatted = new Date(new Date()-(new Date().getTimezoneOffset()*60000)).toISOString().slice(0,-1).split("T")[0];
 
     const [formData, setFormData] = useState();
     const [submitted,setSubmitted] = useState(false);
@@ -28,8 +30,7 @@ function BookingForm ({availableTimes, dispatch}) {
     });
 
     useEffect(()=>{
-        console.log(formData);
-        console.log("Submit status: "+submitted);
+        submitAPI(formData);
     },[formData]);
 
     if(!submitted){
@@ -55,7 +56,7 @@ function BookingForm ({availableTimes, dispatch}) {
                         <h2 className='subTitle'>Choose date</h2>
                         <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
                             handleChange(e);
-                            dispatch({type:"date_changed"});
+                            dispatch({type:"date_changed", date:values.date});
                         }}/>
                         <ErrorMessage name="date" component="div" style={{ color: 'red' }} />
                         <h2 className='subTitle'>Choose time</h2>

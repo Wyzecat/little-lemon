@@ -2,17 +2,24 @@ import './style/App.css';
 import Homepage from './Homepage.js';
 import BookingPage from "./BookingPage.js";
 import { Route, Routes } from 'react-router-dom';
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
+import { fetchAPI } from './APIfuncs.js';
 
-export const initializeTimes = (date) => {
-  const initTimes = {  availableTimes: ['17:00','18:00','19:00','20:00','21:00','23:00'],};
+export const initializeTimes = () => {
+  //TODO: update to use the fetchData API function
+  const currentDate = new Date(new Date()-(new Date().getTimezoneOffset()*60000));
+  const timeArr = fetchAPI(currentDate);
+  const initTimes = { availableTimes: timeArr };
   return initTimes;
 }
 
 export const updateTimes = (state, action) => {
+  //TODO: update to use the fetchData API function
+  const newDate = new Date(action.date);
+  console.log(newDate + " + " + typeof(newDate))
   switch(action.type){
     case "date_changed":
-      return {availableTimes: ['00:00']};
+      return {availableTimes: fetchAPI(newDate)};
     default:
       return state;
   }
