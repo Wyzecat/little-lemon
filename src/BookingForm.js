@@ -31,12 +31,15 @@ function BookingForm ({availableTimes, dispatch}) {
 
     useEffect(()=>{
         submitAPI(formData);
+        console.log(typeof(formData))
     },[formData]);
 
     if(!submitted){
         return(
             <section className="bookingForm">
-                <h1>Booking Form</h1>
+                <div className='formHeader'>
+                    <h1 className="formHeader">Reserve Your Table</h1>
+                </div>
                 <Formik
                 initialValues={{
                     date: currentDate,
@@ -48,34 +51,52 @@ function BookingForm ({availableTimes, dispatch}) {
                     console.log("Submitting reservation");
                     setFormData(values);
                     setSubmitted(true);
+                    for(const [key,val] of Object.entries(values)){
+                        localStorage.setItem(key, JSON.stringify(val));
+                    }
                 }}
                 validationSchema={bookingSchema}
                 >
                 {({ values, errors, handleChange }) => (
                     <Form className="bookingForm" >
-                        <h2 className='subTitle'>Choose date</h2>
-                        <Field id="date" name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
-                            handleChange(e);
-                            dispatch({type:"date_changed", date:values.date});
-                        }}/>
-                        <ErrorMessage name="date" component="div" style={{ color: 'red' }} />
-                        <h2 className='subTitle'>Choose time</h2>
-                        <div role="group" aria-labelledby="time-radio-group" className="timeSelect">
-                            <AvailableTimes times={availableTimes} status={values.time}/>
+                        <div className='formSection'>
+                            <label for="dateField" className='formSubTitle'>Choose date</label>
+                            <Field name="date" type="date" id="dateField" min={currentDate} onChange={(e) => {
+                                handleChange(e);
+                                dispatch({type:"date_changed", date:values.date});
+                            }} aria-label="Date Selection"
+                            className = {document.getElementById("dateError") ? "inputError" : "inputGood"}/>
+                            <ErrorMessage name="date" id="dateError" component="div" style={{ color: 'red' }} />
                         </div>
-                        <ErrorMessage name="time" component="div" style={{ color: 'red' }} />
-                        <h2 className='subTitle'>Number of guests</h2>
-                        <Field id="guests" name="guests" type="number" id="guestsField"/>
-                        <ErrorMessage name="guests" component="div" style={{ color: 'red' }} />
-                        <h2 className='subTitle'>Occasion</h2>
-                        <Field id="occasion" name="occasion" as="select" id="occasionField" >
-                            <option value="Birthday">Birthday</option>
-                            <option value="Anniversary">Anniversary</option>
-                        </Field>
-                        <ErrorMessage name="occasion" component="div" style={{ color: 'red' }} />
-                        <button className="button" id="submitButton" type="submit" disabled={submitted}>
-                            Book Now
-                        </button>
+                        <div className='formSection'>
+                            <label for="guests" className='formSubTitle'>Number of guests</label>
+                            <Field id="guests" name="guests" type="number" aria-label="Guests Field"
+                            className = {document.getElementById("guestsError") ? "inputError" : "inputGood"}/>
+                            <ErrorMessage name="guests" id="guestsError" component="div" style={{ color: 'red' }} />
+                        </div>
+                        <div className='formSection'>
+                            <label for="occasion" className='formSubTitle'>Occasion</label>
+                            <Field id="occasion" name="occasion" as="select" aria-label="Occasion Field"
+                            className = {document.getElementById("occasionError") ? "inputError" : "inputGood"}>
+                                <option value="Birthday" aria-label="Birthday">Birthday</option>
+                                <option value="Anniversary" aria-label="Anniversary">Anniversary</option>
+                            </Field>
+                            <ErrorMessage name="occasion" id="occasionError" component="div" style={{ color: 'red' }} />
+                        </div>
+                        <div className='formSection' id="timeSec">
+                            <h2 className='formSubTitle'>Choose time</h2>
+                            <div role="group" aria-labelledby="time-radio-group" className="timeSelect" id="timeSelect" aria-label="Time Selection">
+                                <AvailableTimes times={availableTimes} status={values.time}/>
+                            </div>
+                            <ErrorMessage name="time" id="timeError" component="div" style={{ color: 'red' }} />
+                        </div>
+                        <div className="formFooter">
+                            <div className='formButtonContainer'>
+                                <button className="button" id="submitButton" type="submit" disabled={submitted}>
+                                    Book Now
+                                </button>
+                            </div>
+                        </div>
                     </Form>
                 )}
                 </Formik>
@@ -90,16 +111,16 @@ function BookingForm ({availableTimes, dispatch}) {
                 <div className="bookingSubmitReview">
                     <ul className="resData">
                         <li>
-                            <p>Date: {formData.date}</p>
+                            <p>Date: {localStorage.getItem('date').replace(/['"]+/g, '')}</p>
                         </li>
                         <li>
-                            <p>Time: {formData.time}</p>
+                            <p>Time: {localStorage.getItem('time').replace(/['"]+/g, '')}</p>
                         </li>
                         <li>
-                            <p>Number of Guests: {formData.guests}</p>
+                            <p>Number of Guests: {localStorage.getItem('guests')}</p>
                         </li>
                         <li>
-                            <p>Occasion: {formData.occasion}</p>
+                            <p>Occasion: {localStorage.getItem('occasion').replace(/['"]+/g, '')}</p>
                         </li>
                     </ul>
                     <Link className="button" to="/">Return To Homepage</Link>

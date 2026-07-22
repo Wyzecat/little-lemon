@@ -8,8 +8,10 @@ function Footer() {
             </section>
             <div className='footerNav'>
                 <section className="footerSection">
-                    <h3 className="sectionTitle doormatTop">Doormat</h3>
-                    <h3 className="sectionTitle doormatBottom">Navigation</h3>
+                    <div className="footerTitleContainer">
+                        <h3 className="sectionTitle doormatTop">Doormat</h3>
+                        <h3 className="sectionTitle doormatBottom">Navigation</h3>
+                    </div>
                     <ul className="footerNavBar">
                         <li>
                             <a href="./home">Home</a>

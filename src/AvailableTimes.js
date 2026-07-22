@@ -7,7 +7,7 @@ function AvailableTimes(props){
     for (let i=0;i<props.times.length;i++){
         options.push(
             <>
-                <label className={props.status != props.times[i] ? "time" : "timeSelected"}>
+                <label for={props.times[i]} className={props.status != props.times[i] ? "time" : "timeSelected"}>
                 <Field type="radio" name="time" className="timeOption" id={props.times[i]} value={props.times[i]} />{props.times[i]}
                 </label>
             </>

@@ -1,3 +1,14 @@
+/*Fonts*/
+@font-face {
+    font-family: Karla;
+    src: url('https://fonts.googleapis.com/css?family=Karla');
+}
+
+@font-face {
+    font-family: Markazi;
+    src: url('https://fonts.googleapis.com/css2?family=Markazi+Text');
+}
+
 .bookingMain{
     display: grid;
     grid-template-columns: repeat(12,1fr);
@@ -5,6 +16,10 @@
     column-gap: 1em;
 }
 
+body{
+    padding: 0;
+    margin: 0;
+}
 
 /* Form */
 
@@ -12,7 +27,63 @@
     display: flex;
     flex-direction: column;
     grid-column: 3 / span 8;
-    grid-row: 2;
+    grid-row: 4;
+    row-gap: 2em;
+    padding: 2em;
+    margin: 2em 0;
+}
+
+.formHeader{
+    font-family: 'Markazi';
+    font-size: 64pt;
+    font-weight: 500;
+    text-align: center;
+}
+
+.formFooter{
+    margin: 1em 0em;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+}
+
+.formButtonContainer {
+    grid-column: 2;
+}
+
+.formButtonContainer button{
+    width: 100%;
+    place-self: center;
+    font-family: 'karla';
+    font-size: 18pt;
+    font-weight: 500;
+    border-radius: 16px;
+    transition: background-color 0.16s ease-in-out;
+}
+
+.formButtonContainer button:hover{
+    background-color: #F4CE14;
+    border-color: #F4CE14;
+    border-style: solid;
+    color:black;
+    cursor: pointer;
+}
+
+.formSection{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    justify-content: center;
+    column-gap: 1em;
+}
+
+.formSection label{
+    align-self: flex-start;
+}
+
+.formSubTitle{
+    font-family: 'karla';
+    font-size: 40pt;
+    font-weight: 400;
 }
 
 .timeOption{
@@ -32,10 +103,14 @@
 .time{
     color:#EDEFEE;
     background-color: #495E57;
-    padding: 0.5em;
+    padding: 0.5em 2em;
     margin: 0.3em;
     border-radius: 16px;
     cursor: pointer;
+    transition: background-color 0.16s ease-in-out;
+    font-family: 'karla';
+    font-size: 16pt;
+
 }
 
 .time:hover{
@@ -46,10 +121,110 @@
 .timeSelected{
     background-color: #F4CE14;
     color:black;
-    padding: 0.5em;
+    padding: 0.5em 2em;
     margin: 0.3em;
     border-radius: 16px;
     cursor: pointer;
+    font-family: 'karla';
+    font-size: 16pt;
+}
+
+.timeSelect{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 0px;
+    flex-wrap: wrap;
+}
+
+#timeSec{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+@media (max-width: 1024px) {
+    #timeSec{
+        display: flex;
+        flex-direction: column;
+    }
+    .timeSelect{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        min-width: 0px;
+        flex-wrap: wrap;
+        grid-row: 2;
+    }
+    .formSection{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        align-items: center;
+        justify-content: center;
+        column-gap: 1em;
+    }
+    .formHeader{
+        margin: 0.3em 0 0 0;
+    }
+    .formFooter{
+        margin: 2em 0em;
+        display: grid;
+        grid-template-columns: 2fr 5fr 2fr;
+    }
+    .bookingMain {
+        display: grid;
+        column-gap: 0;
+        grid-template-columns: repeat(12,1fr);
+    }
+    .bookingForm {
+        grid-column: 2 / span 10;
+        justify-self: center;
+        align-self: center;
+        width: 100%;
+        padding-bottom: 0;
+    }
+    .button{
+        border-bottom-left-radius: 0;
+    }
+}
+
+.inputError {
+  /* Requires border style (like solid) to be visible */
+  border-color: #ff0000;
+  border-style:solid;
+}
+
+.inputGood {
+  /* Requires border style (like solid) to be visible */
+  border-color: #000;
+  border-style:solid;
+}
+
+select {
+    border-radius: 16px;
+    border-width: 2px;
+    padding: 0.5em;
+    text-align: center;
+    font-family: 'karla';
+    font-weight: 550;
+    font-size: 16pt;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+}
+
+select:hover{
+    cursor: pointer;
+}
+
+input:not(.timeOption) {
+    border-radius: 16px;
+    padding: 0.5em;
+    text-align: center;
+    font-family: 'karla';
+    font-weight: 550;
+    font-size: 16pt;
 }
 
 /* Submitted View */
@@ -59,10 +234,11 @@
     grid-template-columns: repeat(8,1fr);
     grid-column: 3 / span 8;
     grid-row: 2;
+    padding-left: 3em;
 }
 
 .reviewHeader {
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 3;
     align-self: center;
 }
 
