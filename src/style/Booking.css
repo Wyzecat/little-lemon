@@ -82,8 +82,10 @@ body{
 
 .formSubTitle{
     font-family: 'karla';
-    font-size: 40pt;
+    font-size: 20pt;
     font-weight: 400;
+    padding-right: 2em;
+    text-align: right;
 }
 
 .timeOption{
@@ -129,6 +131,15 @@ body{
     font-size: 16pt;
 }
 
+.centerTitle {
+    padding-right: 0;
+}
+
+#timeSec{
+    display: flex;
+    flex-direction: column;
+}
+
 .timeSelect{
     display: flex;
     flex-direction: row;
@@ -136,11 +147,7 @@ body{
     justify-content: center;
     min-width: 0px;
     flex-wrap: wrap;
-}
-
-#timeSec{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-row: 2;
 }
 
 @media (max-width: 1024px) {
@@ -184,9 +191,34 @@ body{
         width: 100%;
         padding-bottom: 0;
     }
+    .formSubTitle{
+        font-family: 'karla';
+        font-size: 20pt;
+        font-weight: 400;
+        padding-right: 2em;
+        text-align: center;
+    }
+    .centerTitle {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        text-align: center;
+    }
     .button{
         border-bottom-left-radius: 0;
     }
+}
+
+#dateError{
+    grid-column: 2;
+}
+
+#guestsError{
+    grid-column: 2;
+}
+
+#occasionError{
+    grid-column: 2;
 }
 
 .inputError {
@@ -254,6 +286,7 @@ input:not(.timeOption) {
     text-align: center;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .resData li {

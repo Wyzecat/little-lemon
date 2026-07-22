@@ -84,7 +84,7 @@ function BookingForm ({availableTimes, dispatch}) {
                             <ErrorMessage name="occasion" id="occasionError" component="div" style={{ color: 'red' }} />
                         </div>
                         <div className='formSection' id="timeSec">
-                            <h2 className='formSubTitle'>Choose time</h2>
+                            <h2 className='formSubTitle centerTitle'>Choose time</h2>
                             <div role="group" aria-labelledby="time-radio-group" className="timeSelect" id="timeSelect" aria-label="Time Selection">
                                 <AvailableTimes times={availableTimes} status={values.time}/>
                             </div>
