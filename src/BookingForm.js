@@ -17,7 +17,7 @@ function BookingForm ({availableTimes, dispatch}) {
     const bookingSchema = Yup.object({
         date: Yup.date()
             .min(currentDate,"Please choose a date of today or later.")
-            .required("A valid date is required."),
+            .required("Please choose a date of today or later."),
         time: Yup.string().oneOf(availableTimes, "Please choose a time from the list.")
             .required("A time is required."),
         guests: Yup.number()
@@ -66,13 +66,13 @@ function BookingForm ({availableTimes, dispatch}) {
                                 dispatch({type:"date_changed", date:values.date});
                             }} aria-label="Date Selection"
                             className = {document.getElementById("dateError") ? "inputError" : "inputGood"}/>
-                            <ErrorMessage name="date" id="dateError" component="div" style={{ color: 'red' }} />
+                            <ErrorMessage data-testid="dateError" name="date" id="dateError" component="div" style={{ color: 'red' }} />
                         </div>
                         <div className='formSection'>
                             <label for="guests" className='formSubTitle'>Number of guests</label>
                             <Field id="guests" name="guests" type="number" aria-label="Guests Field"
                             className = {document.getElementById("guestsError") ? "inputError" : "inputGood"}/>
-                            <ErrorMessage name="guests" id="guestsError" component="div" style={{ color: 'red' }} />
+                            <ErrorMessage data-testid="guestsError" name="guests" id="guestsError" component="div" style={{ color: 'red' }} />
                         </div>
                         <div className='formSection'>
                             <label for="occasion" className='formSubTitle'>Occasion</label>
@@ -81,14 +81,14 @@ function BookingForm ({availableTimes, dispatch}) {
                                 <option value="Birthday" aria-label="Birthday">Birthday</option>
                                 <option value="Anniversary" aria-label="Anniversary">Anniversary</option>
                             </Field>
-                            <ErrorMessage name="occasion" id="occasionError" component="div" style={{ color: 'red' }} />
+                            <ErrorMessage data-testid="occasionError" name="occasion" id="occasionError" component="div" style={{ color: 'red' }} />
                         </div>
                         <div className='formSection' id="timeSec">
                             <h2 className='formSubTitle centerTitle'>Choose time</h2>
                             <div role="group" aria-labelledby="time-radio-group" className="timeSelect" id="timeSelect" aria-label="Time Selection">
                                 <AvailableTimes times={availableTimes} status={values.time}/>
                             </div>
-                            <ErrorMessage name="time" id="timeError" component="div" style={{ color: 'red' }} />
+                            <ErrorMessage name="time" data-testid="timeError" id="timeError" component="div" style={{ color: 'red' }} />
                         </div>
                         <div className="formFooter">
                             <div className='formButtonContainer'>
@@ -107,7 +107,7 @@ function BookingForm ({availableTimes, dispatch}) {
         console.log(submitted);
         return(
             <section className="bookingFormSubmitted">
-                <h1 className="reviewHeader sectionTitle">Your reservation has been processed.</h1>
+                <h1 className="reviewHeader sectionTitle" data-testid="successText">Your reservation has been processed.</h1>
                 <div className="bookingSubmitReview">
                     <ul className="resData">
                         <li>
